@@ -1,3 +1,14 @@
 const appname = "HAPPY SHOPPING";
 const appversion = "Version 1.0.0";
 const credits = "@Baaba Devs";
+const home = "Home",
+    categories = "Categories",
+    cart = "Cart",
+    account = "Account";
+const serachanything = "Search anything...",
+    todayDeal = "Today's Deal",
+    flashsale = "Flash Sale",
+    topSeller = "Top Seller",
+    brand = "Brand",
+    topCategories = "Top Categories",
+    featuredCategories = "Featured Categories";
