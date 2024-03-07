@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/views/category_screen/detailScreen.dart';
 
-class c4Screen extends StatelessWidget {
+class c4Screen extends StatefulWidget {
+  @override
+  c4ScreenState createState() => c4ScreenState();
+}
+
+class c4ScreenState extends State<c4Screen> {
+  double rating = 0.0; // Initialize the rating
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,37 +32,38 @@ class c4Screen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               _buildImageRow([
-                _buildImageContainer(
-                    'images/s1.webp', 'Masala Lays', 'Rs.60 PKR'),
-                _buildImageContainer(
-                    'images/s2.jpg', 'Snack Chocolate', 'Rs.200 PKR'),
+                _buildImageContainer(context, 'images/s1.webp', 'Masala Lays',
+                    'Rs.60 PKR', 3.0, 1000),
+                _buildImageContainer(context, 'images/s2.jpg',
+                    'Snack Chocolate', 'Rs.200 PKR', 1.0, 800),
               ]),
               SizedBox(height: 20),
               _buildImageRow([
-                _buildImageContainer(
-                    'images/s3.jpg', 'Eclairs Toffee', 'Rs.800 PKR'),
-                _buildImageContainer(
-                    'images/s4.jpg', 'Rainbow Lollypop', 'Rs.600 PKR'),
+                _buildImageContainer(context, 'images/s3.jpg', 'Eclairs Toffee',
+                    'Rs.800 PKR', 3.0, 1200),
+                _buildImageContainer(context, 'images/s4.jpg',
+                    'Rainbow Lollypop', 'Rs.600 PKR', 4.0, 1500),
               ]),
               SizedBox(height: 20),
               _buildImageRow([
-                _buildImageContainer(
-                    'images/s5.webp', 'Cafe Biscuit 12 Pcs', 'Rs.550 PKR'),
-                _buildImageContainer(
-                    'images/s6.jpg', 'Special Mix Nimko', 'Rs.700 PKR'),
+                _buildImageContainer(context, 'images/s5.webp',
+                    'Cafe Biscuit 12 Pcs', 'Rs.550 PKR', 3.0, 900),
+                _buildImageContainer(context, 'images/s6.jpg',
+                    'Special Mix Nimko', 'Rs.700 PKR', 2.0, 1100),
               ]),
               SizedBox(height: 20),
               _buildImageRow([
-                _buildImageContainer(
-                    'images/s7.jpg', 'Jelly Snack 6 Pcs', 'Rs.1100 PKR'),
-                _buildImageContainer('images/s8.jpg', 'Lays Wavy', 'Rs.80 PKR'),
+                _buildImageContainer(context, 'images/s7.jpg',
+                    'Jelly Snack 6 Pcs', 'Rs.1100 PKR', 3.0, 1300),
+                _buildImageContainer(context, 'images/s8.jpg', 'Lays Wavy',
+                    'Rs.80 PKR', 4.0, 1700),
               ]),
               SizedBox(height: 20),
               _buildImageRow([
-                _buildImageContainer(
-                    'images/s9.png', 'Kit Kat Chocolate', 'Rs.350 PKR'),
-                _buildImageContainer(
-                    'images/s10.webp', 'Knorr Noodles 4 Pcs', 'Rs.450 PKR'),
+                _buildImageContainer(context, 'images/s9.png',
+                    'Kit Kat Chocolate', 'Rs.350 PKR', 3.0, 950),
+                _buildImageContainer(context, 'images/s10.webp',
+                    'Knorr Noodles 4 Pcs', 'Rs.450 PKR', 3.0, 850),
               ]),
             ],
           ),
@@ -70,52 +79,76 @@ class c4Screen extends StatelessWidget {
     );
   }
 
-  Widget _buildImageContainer(String imagePath, String text1, String text2) {
-    return Column(
-      children: [
-        Container(
-          width: 180,
-          height: 180,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              imagePath,
-              width: 180,
-              height: 180,
-              fit: BoxFit.cover,
+  Widget _buildImageContainer(BuildContext context, String imagePath,
+      String name, String price, double rating, int views) {
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the detail page when the image is tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailScreen(
+              imagePath: imagePath,
+              name: name,
+              price: price,
+              initialRating: rating,
+              views: views,
+              onRatingChanged: (newRating) {
+                // Update the rating in c6Screen
+                setState(() {
+                  this.rating = newRating;
+                });
+              },
             ),
           ),
-        ),
-        SizedBox(height: 12),
-        Text(
-          text1,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        );
+      },
+      child: Column(
+        children: [
+          Container(
+            width: 180,
+            height: 180,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                imagePath,
+                width: 180,
+                height: 180,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
-        Text(
-          text2,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+          SizedBox(height: 12),
+          Text(
+            name,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
-        ),
-      ],
+          Text(
+            price,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

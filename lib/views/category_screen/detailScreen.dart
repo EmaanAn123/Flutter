@@ -90,18 +90,21 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
               SizedBox(height: 20),
               // Rating system
+              // Rating system
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   for (int i = 1; i <= 5; i++)
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          // Calculate new rating here
-                          rating += 1; // Increment the rating by 1
-                        });
-                        // Call the callback function to update the rating
-                        widget.onRatingChanged(rating);
+                        if (rating < 5) {
+                          setState(() {
+                            // Calculate new rating here
+                            rating += 1; // Increment the rating by 1
+                          });
+                          // Call the callback function to update the rating
+                          widget.onRatingChanged(rating);
+                        }
                       },
                       child: Icon(
                         Icons.star,
@@ -115,6 +118,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                 ],
               ),
+
               SizedBox(height: 20),
               // Views
               Text(

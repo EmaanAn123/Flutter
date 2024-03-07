@@ -47,7 +47,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       context, "images/c3.jpg", "Toys", c3Screen()),
                   SizedBox(width: 14),
                   _buildCategoryContainer(
-                      context, "images/c4.webp", "Candies", c4Screen()),
+                      context, "images/c4.webp", "Snacks", c4Screen()),
                 ],
               ),
               SizedBox(height: 17),

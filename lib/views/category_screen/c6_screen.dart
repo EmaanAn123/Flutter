@@ -147,14 +147,6 @@ class _c6ScreenState extends State<c6Screen> {
               color: Colors.white,
             ),
           ),
-          Text(
-            'Rating: $rating', // Display the current rating
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
         ],
       ),
     );
