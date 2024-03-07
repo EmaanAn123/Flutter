@@ -20,5 +20,3 @@ const imgp3 = "assets/images/p3.jpg";
 const imgp4 = "assets/images/p4.webp";
 const imgp5 = "assets/images/p5.jpg";
 const imgp6 = "assets/images/p6.jpg";
-//const imgc1 = "assets/images/c1.webp";
-//const imgc2 = "assets/images/c2.jpg";
